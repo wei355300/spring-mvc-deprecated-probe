@@ -33,4 +33,4 @@ public void deprecatedMethod() {
 - 2.2 request 拦截
 
 自定义 HandlerInterceptor, 在处理请求时, 判断 request 的 url 及 http-method 是否匹配上 `2.1` 记录的map,  
-如果能够匹配, 这存储记录
+如果能够匹配, 则存储记录
