@@ -11,9 +11,12 @@
 
 ```
 @Pointcut("@annotation(java.lang.Deprecated)")
-public void deprecatedPc() {}
+public void deprecatedPointcut() {}
 
-@Before("deprecatedPc()")
+@Pointcut("@target(org.springframework.stereotype.Controller)")
+public void controllerClassPointcut() {}
+
+@Before("deprecatedPointcut() && controllerClassPointcut()")
 public void deprecatedMethod() {
     // 存储记录
 }
@@ -29,6 +32,24 @@ public void deprecatedMethod() {
 通过 `RequestMappingHandlerMapping` 获取所有的 mapping,  
 解析 mapping 记录的接口对应的method及被标注的annotation  
 如果被 @Deprecated 标注了, 则将 method + uri 单独记录到map中,  
+
+```
+@Bean
+public AnalyBean analy(@Autowird RequestMappingHandlerMapping mapping) {
+    Map<RequestMappingInfo, HandlerMethod> map = mapping.getHandlerMethods();
+    ...
+    
+     //过滤出被 @Deprecated 标记的 method
+    handlerMethod.getMethod().getDeclaredAnnotations();
+    ...
+    
+    //过滤出 url
+    requestMappingInfo.getPatternsCondition().getPatterns()
+        .stream()
+        .findFirst()
+        .ifPresent(interfaceResources::setUrl);
+}
+```
 
 - 2.2 request 拦截
 
