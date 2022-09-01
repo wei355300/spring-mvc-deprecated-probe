@@ -17,7 +17,8 @@ public void deprecatedPointcut() {}
 public void controllerClassPointcut() {}
 
 @Before("deprecatedPointcut() && controllerClassPointcut()")
-public void deprecatedMethod() {
+public void deprecatedMethod(ProceedingJoinPoint pjp) {
+    // 通过 ProceedingJoinPoint 获取目标对象信息
     // 存储记录
 }
 ```
