@@ -4,6 +4,7 @@ import com.mantas.mvc.deprecated.probe.DeprecatedProbe;
 import org.aspectj.lang.reflect.MethodSignature;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public abstract class AbstractDeprecatedProbeSaver implements DeprecatedProbeSaver {
 
@@ -22,10 +23,11 @@ public abstract class AbstractDeprecatedProbeSaver implements DeprecatedProbeSav
         data.setActionTime(LocalDateTime.now().toString());
 
         DeprecatedProbe deprecatedProbe = signature.getMethod().getAnnotation(DeprecatedProbe.class);
-        data.setValue(deprecatedProbe.value());
-        data.setNamespace(deprecatedProbe.ns());
-        data.setVersion(deprecatedProbe.version());
-
+        if (Objects.nonNull(deprecatedProbe)) {
+            data.setValue(deprecatedProbe.value());
+            data.setNamespace(deprecatedProbe.ns());
+            data.setVersion(deprecatedProbe.version());
+        }
         doSave(data);
     }
 }
