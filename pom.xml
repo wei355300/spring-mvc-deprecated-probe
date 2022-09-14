@@ -8,10 +8,10 @@
         <version>r3.2233.2-SNAPSHOT</version>
     </parent>
     <groupId>com.mantas</groupId>
-    <artifactId>spring-mvc-deprecated-probe</artifactId>
+    <artifactId>deprecated-probe</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-mvc-deprecated-probe</name>
-    <description>spring-mvc-deprecated-probe</description>
+    <name>deprecated-probe</name>
+    <description>deprecated-probe</description>
 
     <properties>
         <java.version>1.8</java.version>
